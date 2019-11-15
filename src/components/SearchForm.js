@@ -69,7 +69,7 @@ function SearchForm() {
           name="character_specie"
           render={msg => <div className="error">{msg}</div>}
         />
-        <Detail>ID</Detail>
+        <Detail>SPECIE</Detail>
         <Field
           type="text"
           name="character_specie"

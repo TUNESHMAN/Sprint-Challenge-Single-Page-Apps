@@ -2,26 +2,46 @@ import React, { useState } from "react";
 import { withFormik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import styled from "styled-components";
 
- function SearchForm() {
+const Forms = styled.form`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const Lead = styled.h1`
+color: red;
+text-align: center;
+font-weight: bold;
+font-size: 30px`
+
+const Detail = styled.h3`
+margin-bottom: 20px;`
+
+const Enter = styled.button`
+margin-top: 20px;
+width: 70px;
+height: 40px;
+`
+
+function SearchForm() {
   const [character, setCharacter] = React.useState({
     character_name: "",
     character_id: "",
     character_gender: "",
     character_specie: ""
-    
-    
   });
 
   return (
     <section className="search-form">
-      <h1>CHARACTER SEARCH FORM</h1>
-      <Form>
+      <Lead>CHARACTER SEARCH FORM</Lead>
+      <Forms>
         <ErrorMessage
           name="character_name"
           render={msg => <div className="error">{msg}</div>}
         />
-        <label>CHARACTER NAME</label>
+        <Detail>CHARACTER NAME</Detail>
         <Field
           type="text"
           name="character_name"
@@ -31,34 +51,33 @@ import axios from "axios";
           name="character_id"
           render={msg => <div className="error">{msg}</div>}
         />
-        <label>ID</label>
+        <Detail>ID</Detail>
         <Field
           type="text"
           name="character_id"
           placeholder="ENTER CHARACTER ID"
         />
-        <label>
-          Select a gender:
-          <Field as="select" name="character_gender">
+        <Detail>
+          Select a gender : <Field as="select" name="character_gender">
             <option>Select an option</option>
             <option>Male</option>
             <option>Female</option>
           </Field>
-        </label>
+        </Detail>
 
         <ErrorMessage
           name="character_specie"
           render={msg => <div className="error">{msg}</div>}
         />
-        <label>ID</label>
+        <Detail>ID</Detail>
         <Field
           type="text"
           name="character_specie"
           placeholder="ENTER CHARACTER SPECIE"
         />
 
-        <input type="submit"></input>
-      </Form>
+        <Enter type="submit"> SUBMIT</Enter>
+      </Forms>
     </section>
   );
 }
@@ -68,7 +87,7 @@ const testSearchForm = withFormik({
       character_name: "",
       character_id: "",
       character_gender: "",
-      character_specie: "",
+      character_specie: ""
     };
   },
   validationSchema: Yup.object().shape({
@@ -87,7 +106,7 @@ const testSearchForm = withFormik({
     console.log(values, tools);
 
     axios
-     .post("https://rickandmortyapi.com/api/character/", values)
+      .post("https://rickandmortyapi.com/api/character/", values)
       .then(response => {
         console.log(response.data.results);
         tools.resetForm();
@@ -96,7 +115,6 @@ const testSearchForm = withFormik({
         console.log(err);
       });
   }
-
 })(SearchForm);
 
 export default testSearchForm;

@@ -7,6 +7,7 @@ export default function CharacterCard(props) {
   <p>{props.status}</p>
 <h3>{props.id}</h3>
 <img src = {props.image} />
+  <h3>{props.species}</h3>
     </div>
   );
 }

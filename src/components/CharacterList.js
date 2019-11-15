@@ -32,7 +32,8 @@ export default function CharacterList() {
     gender = {element.gender}
     status = {element.status}
     id ={element.id}
-    image = {element.image}/>
+    image = {element.image}
+    species ={element.species}/>
   )
 
   
